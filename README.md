@@ -24,7 +24,7 @@ This classifier requires 2 other packages:
   4. Sample startup command(s)
     1. `python corenlp/corenlp.py -S stanford-corenlp-2012-07-09/
     2. Ideally the server should be started as a background process and logging can be added with the following command
-    3. `
+    3. `setsid python corenlp/corenlp.py -S stanford-corenlp-2012-07-09/ < /dev/zero 2>&1&> ~/logs/coreNLP-`date '+%Y.%m.%d'`.log &
   5. The Core NLP package require at least 3GB of RAM to run.
 2. Classifier Server
   1. Follow the basic instructions described in this [great blog post] (http://blog.garethdwyer.co.za/2013/07/getting-simple-flask-app-running-on.html) 
@@ -39,12 +39,27 @@ This classifier requires 2 other packages:
   5. Start the server
     1. `sudo python run.py
     2. Ideally the server should be started as a background process with logging like so
-    3.
+    3. `setsid python run.py < /dev/zero 2>&1&> ~/logs/politeness-`date '+%Y.%m.%d'`.log &
+    4. By default the classifier/flask is running on port 5000
   6. Setting up HTTPS/SSL connection (optional)
     1. An HTTPS server can be setup with the following additions
     2. Obtain a valid SSL certificate and key. Store them as server.crt and server.key respectively.
     3. We need to make some minor changes to the config files created in step 3.
-      1. In the sitename.conf add the following 
+      1. In the sitename.conf add the SSL config parameters in the Virtual Host tab. The final conf should look like this.
+         ```
+	 <VirtualHost *:80>
+     	 WSGIScriptAlias / /var/www/politeness/flask_politeness/flask_politeness.wsgi
+     	 *SSLEngine on*
+     	 *SSLCertificateFile /home/srinivas/Keys/server.crt*
+     	 *SSLCertificateKeyFile /home/srinivas/Keys/server.key*  
+
+     	 <Directory /var/www/politeness/flask_politeness>
+            WSGIProcessGroup flask_politeness
+         WSGIApplicationGroup %{GLOBAL}
+         Order deny,allow
+         Allow from all
+     	 </Directory>
+         ```
       2. Restart the Apache server to pick up the new config
       3. `sudo /etc/init.d/apache2 restart
     4. Modify run.py to pick up the SSL context (this should be just uncommenting the first few lines and commenting out the current app.run() )
