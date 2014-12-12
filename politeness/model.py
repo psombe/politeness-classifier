@@ -97,9 +97,11 @@ def score(request):
     probs = {"polite": probs[0][1], "impolite": probs[0][0]}
     return probs
 
-# Stanford NLP server to get dependencies
+# Point this to the NLP parser if it's on a different server
+# Stanford NLP server to get dependency parse
 server = jsonrpclib.Server("http://127.0.0.1:8080")
 
+# Function to get politeness scores
 def get_score(text):
     res = loads(server.parse(text));
     sentences = res['sentences'];
