@@ -1,0 +1,2 @@
+setsid python run.py < /dev/zero 2>&1&> ~/logs/politeness-`date '+%Y.%m.%d'`.log &
+setsid python corenlp/corenlp.py -S stanford-corenlp-2012-07-09/ < /dev/zero 2>&1&> ~/logs/coreNLP-`date '+%Y.%m.%d'`.log &
