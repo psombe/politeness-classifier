@@ -23,9 +23,9 @@ This classifier requires 2 other packages:
   2. The politeness classifier works with [Version 1.3.3] (http://nlp.stanford.edu/software/stanford-corenlp-2012-07-09.tgz)
   3. Run the server on port 8080 (the default port)
   4. Sample startup command(s)
-    1. `python corenlp/corenlp.py -S stanford-corenlp-2012-07-09/
+    1. `python corenlp/corenlp.py -S stanford-corenlp-2012-07-09/`
     2. Ideally the server should be started as a background process and logging can be added with the following command
-    3. `setsid python corenlp/corenlp.py -S stanford-corenlp-2012-07-09/ < /dev/zero 2>&1&> ~/logs/coreNLP-`date '+%Y.%m.%d'`.log &
+    3. `setsid python corenlp/corenlp.py -S stanford-corenlp-2012-07-09/ < /dev/zero 2>&1&> ~/logs/coreNLP-\`date '+%Y.%m.%d'\`.log &`
   5. The Core NLP package require at least 3GB of RAM to run.
 2. Classifier Server
   1. Follow the basic instructions described in this [great blog post] (http://blog.garethdwyer.co.za/2013/07/getting-simple-flask-app-running-on.html) 
@@ -38,9 +38,9 @@ This classifier requires 2 other packages:
     5. Here we have created the config files for the webpage
   4. In the run.py add host='0.0.0.0' inside of run()
   5. Start the server
-    1. `sudo python run.py
+    1. `sudo python run.py`
     2. Ideally the server should be started as a background process with logging like so
-    3. `setsid python run.py < /dev/zero 2>&1&> ~/logs/politeness-`date '+%Y.%m.%d'`.log &
+    3. `setsid python run.py < /dev/zero 2>&1&> ~/logs/politeness-\`date '+%Y.%m.%d'\`.log &`
     4. By default the classifier/flask is running on port 5000
   6. Setting up HTTPS/SSL connection (optional)
     1. An HTTPS server can be setup with the following additions
