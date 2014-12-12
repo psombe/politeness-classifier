@@ -2,6 +2,7 @@
 
 ##Dependencies:
 This classifier requires 2 other packages:
+
 1. [Stanford Politeness API] (https://github.com/sudhof/politeness)
 2. [Stanford Core NLP python flavour] (https://bitbucket.org/torotoki/corenlp-python)
 
@@ -66,6 +67,7 @@ This classifier requires 2 other packages:
 
 ##Making a Request
 There are two ways to test the classifier
+
 1. Programmatically
   1. Use the trial.py script and modify the url to point to the classifier.
 2. If the classifier is running on an EC2 instance
